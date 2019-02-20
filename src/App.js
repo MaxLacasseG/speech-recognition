@@ -1,28 +1,38 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React, { Component } from "react";
+import { Container, Row, Col, Button, ButtonGroup } from "react-bootstrap";
+import { Recognition } from "./utils/SpeechRecog";
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            recognition: Recognition()
+        };
+    }
+
+    OnStart = () => {
+        this.state.recognition.start();
+    };
+    OnStop = () => {
+        this.state.recognition.stop();
+    };
+
+    render() {
+        return (
+            <Container className="App container">
+                <Row>
+                    <Col md="6">
+                        <h5>Speech Recognition app</h5>
+                        <textarea name="" id="" cols="30" rows="10" />
+                    </Col>
+                    <Col md="6">
+                        <Button onClick={this.OnStart}>Start Voice recognition</Button>
+                        <Button onClick={this.OnStop}>Pause Voice recognition</Button>
+                        <Button>Start Voice recognition</Button>
+                    </Col>
+                </Row>
+            </Container>
+        );
+    }
 }
 
 export default App;
