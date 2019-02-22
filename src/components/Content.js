@@ -1,6 +1,16 @@
 import React, { Component } from "react";
-
+import { Chrono } from "../utils/Chrono";
 export default class componentName extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            Chrono: new Chrono(20)
+        };
+    }
+    componentDidMount() {
+        //this.state.Chrono.Start();
+    }
+
     render() {
         return (
             <div className="d-flex h-100 justify-content-center align-content-stretch flex-column">
