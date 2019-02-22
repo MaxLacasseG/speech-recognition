@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Button, ButtonGroup } from "react-bootstrap";
+import Content from "./components/Content";
 import { Recognition } from "./utils/SpeechRecog";
 class App extends Component {
     constructor(props) {
@@ -17,21 +17,13 @@ class App extends Component {
     };
 
     render() {
-        return (
-            <Container className="App container">
-                <Row>
-                    <Col md="6">
-                        <h5>Speech Recognition app</h5>
-                        <textarea name="" id="" cols="30" rows="10" />
-                    </Col>
-                    <Col md="6">
-                        <Button onClick={this.OnStart}>Start Voice recognition</Button>
-                        <Button onClick={this.OnStop}>Pause Voice recognition</Button>
-                        <Button>Start Voice recognition</Button>
-                    </Col>
-                </Row>
-            </Container>
-        );
+        let content = null;
+        if (this.state.recognition.success !== undefined) {
+            content = <div>{this.state.recognition.message}</div>;
+        } else {
+            content = <Content recognition={this.recognition} OnStart={this.OnStart} OnStop={this.OnStop} />;
+        }
+        return <div className="App">{content}</div>;
     }
 }
 

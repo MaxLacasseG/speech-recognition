@@ -1,3 +1,5 @@
+import { fail } from "assert";
+
 export const Recognition = () => {
     try {
         var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -5,6 +7,6 @@ export const Recognition = () => {
         return recognition;
     } catch (e) {
         console.error(e);
-        window.prompt("No browser support for speech recognition");
+        return { success: fail, message: "No browser support for speech recognition. Use Chrome." };
     }
 };
