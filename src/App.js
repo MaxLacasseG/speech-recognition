@@ -1,29 +1,35 @@
 import React, { Component } from "react";
-import Content from "./components/Content";
-import { Recognition } from "./utils/SpeechRecog";
+
+import { Recognition } from "./classes/SpeechRecog";
+import { Chrono } from "./classes/Chrono";
+import { GameManager } from "./classes/GameManager";
+
+import { colorsArray, messages } from "./data/colors";
 class App extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            recognition: Recognition()
+            Recognition: new Recognition(),
+            Chrono: new Chrono(30),
+            GameManager: new GameManager(colorsArray, messages)
         };
     }
 
-    OnStart = () => {
-        this.state.recognition.start();
-    };
-    OnStop = () => {
-        this.state.recognition.stop();
+    componentDidMount = () => {
+        const container = document.getElementById("appContainer");
+        this.state.GameManager.SetContainer(container);
+        this.state.GameManager.FetchNextQuestion();
     };
 
     render() {
-        let content = null;
-        if (this.state.recognition.success !== undefined) {
-            content = <div>{this.state.recognition.message}</div>;
-        } else {
-            content = <Content recognition={this.recognition} OnStart={this.OnStart} OnStop={this.OnStop} />;
-        }
-        return <div className="App">{content}</div>;
+        return (
+            <div className="App">
+                <div id="appContainer">
+                    <h1>test</h1>
+                </div>
+            </div>
+        );
     }
 }
 
