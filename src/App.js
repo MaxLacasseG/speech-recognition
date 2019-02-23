@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import { Recognition } from "./classes/SpeechRecog";
 import { Chrono } from "./classes/Chrono";
 import { GameManager } from "./classes/GameManager";
-
 import { colorsArray, messages } from "./data/colors";
 class App extends Component {
     constructor(props) {
